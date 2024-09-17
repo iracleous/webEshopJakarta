@@ -6,7 +6,9 @@ package gr.codehub.eshoped.webeshop.repositories;
 
  
 import gr.codehub.eshoped.webeshop.models.Product;
+import jakarta.enterprise.context.RequestScoped;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import java.util.List;
 import java.util.Optional;
@@ -17,12 +19,14 @@ import lombok.extern.slf4j.Slf4j;
  * @author DimitrisIracleous
  */
 @Slf4j
+@RequestScoped
 public class ProductRepository implements Repository<Product, Long>{
-    private final EntityManager entityManager;
+    
+    
+    @PersistenceContext(unitName = "Persistence")
+    private  EntityManager entityManager;
 
-    public ProductRepository(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
+   
 
     /**
      *

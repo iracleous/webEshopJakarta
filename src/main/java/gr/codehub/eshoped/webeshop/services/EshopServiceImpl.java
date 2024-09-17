@@ -10,6 +10,8 @@ import gr.codehub.eshoped.webeshop.exceptions.InvalidInputException;
 import gr.codehub.eshoped.webeshop.exceptions.ProductException;
 import gr.codehub.eshoped.webeshop.models.Product;
 import gr.codehub.eshoped.webeshop.repositories.ProductRepository;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Inject;
 import jakarta.ws.rs.NotFoundException;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
@@ -19,12 +21,11 @@ import lombok.extern.slf4j.Slf4j;
  * @author DimitrisIracleous
  */
 @Slf4j
+@RequestScoped
 public class EshopServiceImpl implements EshopService{
-    private final ProductRepository productRepository;
+    @Inject
+    private   ProductRepository productRepository;
 
-    public EshopServiceImpl(ProductRepository productRepository) {
-        this.productRepository = productRepository;
-    }
 
     /**
      *
