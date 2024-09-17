@@ -4,6 +4,7 @@
  */
 package gr.codehub.eshoped.webeshop.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -36,6 +37,7 @@ public class Product {
     @Enumerated(EnumType.STRING)
     private Category category;
  
+    @JsonIgnore
     @OneToMany(mappedBy ="product")
     private List<BasketProduct> basketProducts;
 }

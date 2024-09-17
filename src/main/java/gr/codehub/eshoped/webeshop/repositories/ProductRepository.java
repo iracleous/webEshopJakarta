@@ -10,6 +10,7 @@ import jakarta.enterprise.context.RequestScoped;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
+import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
@@ -26,8 +27,7 @@ public class ProductRepository implements Repository<Product, Long>{
     @PersistenceContext(unitName = "Persistence")
     private  EntityManager entityManager;
 
-   
-
+  
     /**
      *
      * @param id the id of the requested product
@@ -36,17 +36,16 @@ public class ProductRepository implements Repository<Product, Long>{
     @Override
     public Optional<Product> findById(Long id) {
         try {
-            entityManager.getTransaction().begin();
             Product t = entityManager.find(getEntityClass(), id);
-            entityManager.getTransaction().commit();
             return Optional.of(t);
         } catch (Exception e) {
             log.debug("An exception occured");
+             return Optional.empty();  
         }
-        return Optional.empty();  
     }
 
     @Override
+    @Transactional
     public List<Product> findAll() {
         TypedQuery<Product> query = 
                entityManager.createQuery("from " + getEntityClassName(), getEntityClass());
@@ -54,30 +53,18 @@ public class ProductRepository implements Repository<Product, Long>{
     }
 
     @Override
+     @Transactional
     public Optional<Product> save(Product t) {
-        try {
-            entityManager.getTransaction().begin();
-            entityManager.persist(t);
-            entityManager.getTransaction().commit();
-            return Optional.of(t);
-        } catch (Exception e) {
-            log.debug("An exception occured");
-        }
-        return Optional.empty();    }
+         entityManager.persist(t);
+        return Optional.of(t);
+    }
 
     @Override
+    @Transactional
     public boolean deleteById(Long id) {
         Product persistentInstance = entityManager.find(getEntityClass(), id);
         if (persistentInstance != null) {
-
-            try {
-                entityManager.getTransaction().begin();
-                entityManager.remove(persistentInstance);
-                entityManager.getTransaction().commit();
-            } catch (Exception e) {
-                log.debug("An exception occured");
-                return false;
-            }
+                  entityManager.remove(persistentInstance);
             return true;
         }
         return false;   

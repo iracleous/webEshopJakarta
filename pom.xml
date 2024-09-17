@@ -17,7 +17,7 @@
         <logback.version>1.2.3</logback.version>
         <mysql.version>8.0.33</mysql.version>
         <logback.version>1.2.11</logback.version>
-        
+        <jackson.version>2.17.2</jackson.version>
         
     </properties>
     
@@ -51,7 +51,12 @@
             <version>${logback.version}</version>
         </dependency> 
         
-      
+         <!-- Jackson Annotations (needed by Jackson Databind) -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
         
     </dependencies>
     
