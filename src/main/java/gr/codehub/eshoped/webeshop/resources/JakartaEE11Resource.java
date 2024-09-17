@@ -36,7 +36,7 @@ controller
 @CookieParam
 @Context UriInfo uriInfo, @Context HttpHeaders headers
 */
-@Path("eshop")
+@Path("gen")
 public class JakartaEE11Resource {
     
     
