@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package gr.codehub.eshoped.webeshop.services;
 
  
@@ -22,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @RequestScoped
-public class EshopServiceImpl implements EshopService{
+public class ProductServiceImpl implements ProductService{
     @Inject
     private   ProductRepository productRepository;
 

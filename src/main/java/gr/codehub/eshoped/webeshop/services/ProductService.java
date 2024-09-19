@@ -16,7 +16,7 @@ import java.util.List;
  *
  * @author DimitrisIracleous
  */
-public interface EshopService {
+public interface ProductService {
     Product createProduct(String name);
     Long saveProduct(Product product)throws ProductException;
     List<Product> getProducts();

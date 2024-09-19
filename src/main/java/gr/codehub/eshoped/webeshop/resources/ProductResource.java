@@ -7,7 +7,6 @@ package gr.codehub.eshoped.webeshop.resources;
 import gr.codehub.eshoped.webeshop.exceptions.InvalidInputException;
 import gr.codehub.eshoped.webeshop.exceptions.ProductException;
 import gr.codehub.eshoped.webeshop.models.Product;
-import gr.codehub.eshoped.webeshop.services.EshopService;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
@@ -21,6 +20,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import lombok.extern.slf4j.Slf4j;
+import gr.codehub.eshoped.webeshop.services.ProductService;
 
 /**
  *
@@ -28,10 +28,10 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Path("Eshop")
 @Slf4j
-public class WebEshop {
+public class ProductResource {
     
     @Inject
-    private EshopService eshopService;
+    private ProductService eshopService;
     
     @Path("home")
     @GET
@@ -72,7 +72,7 @@ public class WebEshop {
             eshopService.saveProduct(product);
             return product;
         } catch (ProductException ex) {
-            Logger.getLogger(WebEshop.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProductResource.class.getName()).log(Level.SEVERE, null, ex);
         }
       return new Product();
    }

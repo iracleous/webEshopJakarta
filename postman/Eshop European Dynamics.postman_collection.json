@@ -1,0 +1,116 @@
+{
+	"info": {
+		"_postman_id": "f0d8688e-7e4f-40be-9424-77645e2d1e90",
+		"name": "Eshop European Dynamics",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3964095"
+	},
+	"item": [
+		{
+			"name": "Get all products",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/Eshop/resources/Eshop/product",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Eshop",
+						"resources",
+						"Eshop",
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add new Product",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"name\":\"chips\",\r\n\"price\":1.5 ,\r\n\"inventoryQuantity\":2,\r\n\"category\":\"BEVERAGE\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/Eshop/resources/Eshop/product",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Eshop",
+						"resources",
+						"Eshop",
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete product",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/Eshop/resources/Eshop/product/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Eshop",
+						"resources",
+						"Eshop",
+						"product",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get product by name",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "security test",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/Eshop/resources/gen/auth",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Eshop",
+						"resources",
+						"gen",
+						"auth"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

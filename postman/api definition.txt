@@ -1,0 +1,24 @@
+Eshop
+API definition v. 0.1
+--------CRUD
+
+product  
+	POST  product  {ProductJSON} -> {ProductJSON}
+	GET   product           _    ->	[{ProductJSON}]
+	GET   product/{id}      _    ->	[{ProductJSON}]
+	PUT   product/{id}  {ProductJSON} -> {ProductJSON}
+	DELETE   product/{id}      _    ->	boolean
+	
+customer
+	POST  customer  {customerJSON} -> {customerJSON}
+	GET   customer           _    ->	[{customerJSON}]
+	GET   customer/{id}      _    ->	[{customerJSON}]
+	PUT   customer/{id}  {customerJSON} -> {customerJSON}
+	DELETE   customer/{id}      _    ->	boolean
+
+
+basket
+   POST  basket  {customerId, } -> {basket}
+   POST  basket/product    {basketId, productId, quantity} +auth -> {basketProduct}
+   GET   basket/{basketId}
+   DELETE   basket/{id}      _    ->	boolean
