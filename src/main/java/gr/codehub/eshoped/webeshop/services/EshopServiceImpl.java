@@ -57,16 +57,13 @@ public class EshopServiceImpl implements EshopService{
     @Override
     public Product findProductByName(String productName) throws InvalidInputException, NotFoundException {
         
-       if (productName == null) {
-           log.debug("Null product name was given");
-           throw new InvalidInputException();
-       }
-       if (! productName.chars().allMatch(Character::isLetter)) throw new InvalidInputException();
-        
-       List<Product> products =  productRepository.findAll(productName, 100);
-       
-       if (products.isEmpty()) throw new NotFoundException();
-       return products.getFirst();
+      
+      return productRepository.findByName(productName);
+    }
+
+    @Override
+    public boolean deleteProduct(long id) {
+         return productRepository.deleteById(id);
     }
 
      

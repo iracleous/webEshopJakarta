@@ -80,7 +80,7 @@ public class JakartaEE11Resource {
     
     
     
-     @GET
+    @GET
     @Path("/auth")
     @RolesAllowed("ADMIN")
     @Produces("Application/json")

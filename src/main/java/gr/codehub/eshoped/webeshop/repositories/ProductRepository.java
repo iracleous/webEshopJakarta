@@ -9,6 +9,7 @@ import gr.codehub.eshoped.webeshop.models.Product;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import java.util.List;
@@ -52,6 +53,21 @@ public class ProductRepository implements Repository<Product, Long>{
         return query.getResultList();    
     }
 
+    
+    
+     
+    @Transactional
+    public Product findByName(String productName) {
+        String query = "from " + getEntityClassName() 
+                       +" p where p.name = :productName";
+        
+       var q =  entityManager.createQuery(query, getEntityClass())
+                .setParameter("productName", productName);
+        return q.getResultList().get(0);
+    }
+    
+    
+    
     @Override
      @Transactional
     public Optional<Product> save(Product t) {
@@ -70,8 +86,7 @@ public class ProductRepository implements Repository<Product, Long>{
         return false;   
     }
  
- 
-   public List<Product> findAll(String productName, double price) {
+    public List<Product> findAll(String productName, double price) {
        TypedQuery<Product> query = 
                entityManager.createQuery("from " + getEntityClassName()
                        + " where name  like :productName "
@@ -83,11 +98,7 @@ public class ProductRepository implements Repository<Product, Long>{
    }
   
     
-    
-    
-    
-    
-    private Class<Product> getEntityClass() {
+     private Class<Product> getEntityClass() {
         return Product.class;
     }
 

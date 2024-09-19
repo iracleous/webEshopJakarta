@@ -21,4 +21,5 @@ public interface EshopService {
     Long saveProduct(Product product)throws ProductException;
     List<Product> getProducts();
     Product findProductByName(String productName)throws InvalidInputException, NotFoundException;
+    boolean deleteProduct(long id);
 }

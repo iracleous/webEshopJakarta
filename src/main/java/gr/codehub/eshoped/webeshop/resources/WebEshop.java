@@ -10,12 +10,13 @@ import gr.codehub.eshoped.webeshop.models.Product;
 import gr.codehub.eshoped.webeshop.services.EshopService;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.NotFoundException;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
-import jakarta.ws.rs.QueryParam;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -49,7 +50,7 @@ public class WebEshop {
    @Path("product/{productName}")
    @GET
    @Produces("text/json")
-  public  Product findProductByName(@QueryParam("productName") String productName)
+  public  Product findProductByName(@PathParam ("productName") String productName)
          {
      try{ return eshopService.findProductByName(productName);
      }
@@ -77,10 +78,14 @@ public class WebEshop {
    }
   
   
+   @Path("product/{productId}")
+   @DELETE
+   @Consumes("application/json")
+   @Produces("application/json")   
+  public boolean deleteProduct(@PathParam ("productId") long productId){
+      return  eshopService.deleteProduct(productId);
+  }
     
-//    Product createProduct(String name);
-
-//    
 
     
     
